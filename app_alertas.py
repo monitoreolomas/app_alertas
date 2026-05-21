@@ -24,7 +24,7 @@ cgm_opciones = [
     "Villa Fiorito", "Villa Lamadrid"
 ]
 
-categorias = ["Sirena", "Policía", "Bomberos", "Violencia de Género", "Ambulancia"]
+categorias = ["Sirena", "Policía", "Bomberos", "VG", "Ambulancia"]
 
 tipo_iconos = {
     "Whatsapp":  "💬",
