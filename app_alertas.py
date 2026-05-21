@@ -92,7 +92,7 @@ footer,
 /* ── TYPOGRAPHY ── */
 p, label, .stMarkdown p {
     font-family: 'Syne', sans-serif !important;
-    color: #92816a !important;
+    color: #c4a97d !important;
     font-size: 0.875rem !important;
 }
 
@@ -105,7 +105,7 @@ p, label, .stMarkdown p {
     font-weight: 700 !important;
     letter-spacing: 0.1em !important;
     text-transform: uppercase !important;
-    color: #5c4a33 !important;
+    color: #b8905a !important;
     margin-bottom: 4px !important;
 }
 
@@ -231,9 +231,18 @@ hr {
     font-size: 0.9rem !important;
     letter-spacing: 0.05em !important;
     height: 50px !important;
-    padding: 0 2rem !important;
+    min-height: 50px !important;
+    max-height: 50px !important;
+    padding: 0 1rem !important;
     transition: all 0.2s ease !important;
     box-shadow: 0 4px 24px rgba(245,158,11,0.25) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
 }
 
 .stButton > button:hover {
@@ -322,16 +331,16 @@ div[class*="stError"] > div {
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #3d2d18;
+    color: #9a7a50;
     margin: 1.5rem 0 0.85rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid #1e1508;
+    border-bottom: 1px solid #2a1f12;
 }
 
 .field-hint {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.7rem;
-    color: #3d2d18;
+    color: #7a6040;
     margin-top: 3px;
 }
 
@@ -358,13 +367,13 @@ div[class*="stError"] > div {
     font-family: 'Syne', sans-serif;
     font-size: 0.8rem;
     font-weight: 600;
-    color: #5c4a33;
+    color: #a08060;
     letter-spacing: 0.04em;
 }
 
 .tipo-btn:hover {
     border-color: #4a3520;
-    color: #c4a97d;
+    color: #d4b07d;
     background: #1c1409;
 }
 
@@ -400,7 +409,7 @@ div[class*="stError"] > div {
     font-family: 'Syne', sans-serif;
     font-size: 0.8rem;
     font-weight: 600;
-    color: #5c4a33;
+    color: #a08060;
     letter-spacing: 0.03em;
     transition: all 0.18s ease;
     white-space: nowrap;
@@ -408,7 +417,7 @@ div[class*="stError"] > div {
 
 .cat-pill:hover {
     border-color: #4a3520;
-    color: #c4a97d;
+    color: #d4b07d;
 }
 
 .cat-pill.selected {
@@ -569,8 +578,19 @@ with st.container(border=True):
     for i, cat in enumerate(categorias):
         with cat_cols[i]:
             is_sel = st.session_state.categoria_sel == cat
+            # Reduce font for long labels
+            font_size = "0.72rem" if len(cat) > 10 else "0.85rem"
+            btn_style = f"""
+            <style>
+            div[data-testid="column"]:nth-child({i+1}) .stButton > button {{
+                font-size: {font_size} !important;
+                padding: 0 0.4rem !important;
+                letter-spacing: 0.02em !important;
+            }}
+            </style>
+            """
+            st.markdown(btn_style, unsafe_allow_html=True)
             label = f"{cat_icons[cat]} {cat}"
-            btn_type = "primary" if is_sel else "secondary"
             if st.button(label, key=f"cat_{cat}_{fk}", use_container_width=True):
                 st.session_state.categoria_sel = cat
                 st.rerun()
