@@ -570,7 +570,7 @@ with st.container(border=True):
         "Sirena":             "🚨",
         "Policía":            "👮",
         "Bomberos":           "🚒",
-        "Violencia de Género":"🛡️",
+        "VG":                 "🛡️",
         "Ambulancia":         "🚑"
     }
 
