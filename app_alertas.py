@@ -92,7 +92,7 @@ footer,
 /* ── TYPOGRAPHY ── */
 p, label, .stMarkdown p {
     font-family: 'Syne', sans-serif !important;
-    color: black !important;
+    color: white !important;
     font-size: 0.875rem !important;
 }
 
